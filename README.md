@@ -104,8 +104,8 @@ Note: guide should be compatible with other Ubuntu versions from 14.04+
 
 ## Become poweruser
 
-```sudo -i
-```
+```sudo -i```
+
 
 ## CREATE SWAP FILE FOR DAEMON BUILD (if system has less than 2GB of RAM)
 
