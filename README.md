@@ -109,27 +109,27 @@ Note: guide should be compatible with other Ubuntu versions from 14.04+
 
 ## CREATE SWAP FILE FOR DAEMON BUILD (if system has less than 2GB of RAM)
 
-```cd ~; sudo fallocate -l 3G /swapfile; ls -lh /swapfile; sudo chmod 600 /swapfile; ls -lh /swapfile; sudo mkswap /swapfile; sudo swapon /swapfile; sudo swapon --show; sudo cp /etc/fstab /etc/fstab.bak; echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-```
+```cd ~; sudo fallocate -l 3G /swapfile; ls -lh /swapfile; sudo chmod 600 /swapfile; ls -lh /swapfile; sudo mkswap /swapfile; sudo swapon /swapfile; sudo swapon --show; sudo cp /etc/fstab /etc/fstab.bak; echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab```
+
 ## Dependencies install
 
-```cd ~; sudo apt-get install -y ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev libcurl4-openssl-dev curl libzip-dev; apt-get update -y; apt-get install -y git make automake build-essential libboost-all-dev; apt-get install -y yasm binutils libcurl4-openssl-dev openssl libssl-dev; sudo apt-get install -y libgmp-dev; sudo apt-get install -y libtool;
-```
+```cd ~; sudo apt-get install -y ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev libcurl4-openssl-dev curl libzip-dev; apt-get update -y; apt-get install -y git make automake build-essential libboost-all-dev; apt-get install -y yasm binutils libcurl4-openssl-dev openssl libssl-dev; sudo apt-get install -y libgmp-dev; sudo apt-get install -y libtool;```
+
 
 ## Dependencies build and link
 
-```cd ~; wget http://download.oracle.com/berkeley-db/db-6.2.32.NC.tar.gz; tar zxf db-6.2.32.NC.tar.gz; cd db-6.2.32.NC/build_unix; ../dist/configure --enable-cxx --disable-shared; make; sudo make install; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb-6.2.so /usr/lib/libdb-6.2.so; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb_cxx-6.2.so /usr/lib/libdb_cxx-6.2.so; export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"
-```
+```cd ~; wget http://download.oracle.com/berkeley-db/db-6.2.32.NC.tar.gz; tar zxf db-6.2.32.NC.tar.gz; cd db-6.2.32.NC/build_unix; ../dist/configure --enable-cxx --disable-shared; make; sudo make install; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb-6.2.so /usr/lib/libdb-6.2.so; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb_cxx-6.2.so /usr/lib/libdb_cxx-6.2.so; export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"```
+
 
 ## GitHub pull (Source Download)
 
-```cd ~; git clone https://github.com/Konjungate-Core Konjungate
-```
+```cd ~; git clone https://github.com/Konjungate-Core Konjungate```
+
 
 ## Build Konjungate daemon
 
-```cd ~; cd ~/Konjungate/src; chmod a+x obj; chmod a+x leveldb/build_detect_platform; chmod a+x secp256k1; chmod a+x leveldb; chmod a+x ~/Konjungate/src; chmod a+x ~/Konjungate; make -f makefile.unix USE_UPNP=-; cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin/Konjungated;
-```
+```cd ~; cd ~/Konjungate/src; chmod a+x obj; chmod a+x leveldb/build_detect_platform; chmod a+x secp256k1; chmod a+x leveldb; chmod a+x ~/Konjungate/src; chmod a+x ~/Konjungate; make -f makefile.unix USE_UPNP=-; cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin/Konjungated;```
+
 
 ## (Optional) Build Konjungate-QT (GUI wallet) on Linux
 
@@ -137,18 +137,18 @@ All previous steps must be completed first.
 
 If you recompiling some other time you don't have to repeat previous steps, but need to define those variables. Skip this command if this is your first build and previous steps were performed in current terminal session.
 
-```export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"
-```
+```export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"```
+
 
 ## With UPNP:
 
-```cd ~; cd ~/Konjungate; qmake -qt=qt5; make
-```
+```cd ~; cd ~/Konjungate; qmake -qt=qt5; make```
+
 
 ## Recommended Without UPNP:
 
-```cd ~; cd ~/Konjungate; qmake -qt=qt5 USE_UPNP=-; make
-```
+```cd ~; cd ~/Konjungate; qmake -qt=qt5 USE_UPNP=-; make```
+
 
 ## Create config file for daemon
 
@@ -167,26 +167,23 @@ addnode=37.187.180.53
 addnode=139.99.239.62
 addnode=192.99.212.20
 CONFIG
-chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ
-```
+chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ```
 
 ## Run Konjungate daemon
 
-```cd ~; Konjungated; Konjungated getinfo
-```
+```cd ~; Konjungated; Konjungated getinfo```
+
 
 ## Troubleshooting
 for basic troubleshooting run the following commands when compiling:
 this is for minupnpc errors compiling
 
 ```make clean -f makefile.unix USE_UPNP=-
-make -f makefile.unix USE_UPNP=-
-```
+make -f makefile.unix USE_UPNP=-```
 
 ## Updating daemon in bin directory
 
-```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin
-```
+```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin```
 
 
 ## License
