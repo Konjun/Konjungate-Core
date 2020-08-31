@@ -184,8 +184,7 @@ make -f makefile.unix USE_UPNP=-
 
 ## Updating daemon in bin directory
 
-```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin
-```
+```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin```
 
 
 ## License
