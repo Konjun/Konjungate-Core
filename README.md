@@ -169,6 +169,7 @@ addnode=192.99.212.20
 CONFIG
 chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ```
 
+
 ## Run Konjungate daemon
 
 ```cd ~; Konjungated; Konjungated getinfo```
