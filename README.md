@@ -32,8 +32,6 @@ https://www.machfeld-foundation.net<br/>
 
 KONJUNGATE is based on the cyber novel MACHFELD written 1999 by Michael Mastrototaro. Strangely, the main character of the book is called Nakomoto and thus resembles the pseudonym of the BITCOIN inventor Satoshi Nakomoto. What a coincidence, right? Anyway. In his cyber novel, Michael Mastrototaro describes 9 years before Bitcoin appears on the cryptocurrency horizon the mining of KONJUNGATE. Now 20 years after publishing the novel online, KONJUNGATE appears as a Media Art project to decentralize the funding of international contemporary Artists and Institutions and to give a strong artistic statement in times of budget cuts.
 
-
-
 ## LINKS
 
 Official Website:<br/>
@@ -51,7 +49,7 @@ https://bitcointalk.org/index.php?topic=5148524.msg51263942#msg51263942<br/>
 
 ---------------->>>-----<<<<<<---------------------
 
-(So called) Social Media Links:
+## (So called) Social Media Links:
 
 Telegram: https://t.me/joinchat/CZxxC03HTpvdGDWlXg0tgQ 
 
@@ -63,13 +61,132 @@ YouTube: https://www.youtube.com/channel/UCnm-eA9EGNwSHu3KKzkm8Zg
 
 ---------------->>>-----<<<<<<---------------------
 
-EXCHANGES
+## EXCHANGES
 
 CREX24:
 https://crex24.com/exchange/KONJ-BTC<br/>
 https://crex24.com/exchange/KONJ-ETH
 
 
+
+## Blockchain Technology
+
+The Konjungate [KONJ] Blockchain is an experimental smart contract platform protocol that enables instant payments to anyone, anywhere in the world in a private, secure manner. Konjungate [KONJ] uses peer-to-peer blockchain technology developed by Konjungate to operate with no central authority: managing transactions, execution of contracts, and issuing money are carried out collectively by the network. Konjungate [KONJ] is the name of open source software which enables the use of this protocol.
+
+## Custom Difficulty Retarget Algorithm “VRX”
+
+VRX is designed from the ground up to integrate properly with the Velocity parameter enforcement system to ensure users no longer receive orphan blocks.
+
+## Velocity Block Constraint System
+
+Ensuring Insane stays as secure and robust as possible the CryptoCoderz team have implemented what's known as the Velocity block constraint system. This system acts as third and final check for both mined and peer-accepted blocks ensuring that all parameters are strictly enforced.
+Wish (bmw512) Proof-of-Work Algorithm
+
+## Wish or bmw512 hashing algorithm
+is utilized for the Proof-of-Work function and also replaces much of the underlying codebase hashing functions as well that normally are SHA256. By doing so this codebase is able to be both exponentially lighter and more secure in comparison to reference implementations.
+
+## Specifications and General info
+
+Konjungate uses
+
+```libsecp256k1,
+libgmp,
+Boost1.68, OR Boost1.58,  
+Openssl1.02r,
+Berkeley DB 6.2.32,
+QT5.12.1,
+to compile
+```
+
+## BUILD LINUX
+Compiling Konjungate "SatoshiCore" daemon on Ubunutu 18.04 LTS Bionic
+Note: guide should be compatible with other Ubuntu versions from 14.04+
+
+## Become poweruser
+
+```sudo -i
+```
+
+## CREATE SWAP FILE FOR DAEMON BUILD (if system has less than 2GB of RAM)
+
+```cd ~; sudo fallocate -l 3G /swapfile; ls -lh /swapfile; sudo chmod 600 /swapfile; ls -lh /swapfile; sudo mkswap /swapfile; sudo swapon /swapfile; sudo swapon --show; sudo cp /etc/fstab /etc/fstab.bak; echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
+## Dependencies install
+
+```cd ~; sudo apt-get install -y ntp git build-essential libssl-dev libdb-dev libdb++-dev libboost-all-dev libqrencode-dev libcurl4-openssl-dev curl libzip-dev; apt-get update -y; apt-get install -y git make automake build-essential libboost-all-dev; apt-get install -y yasm binutils libcurl4-openssl-dev openssl libssl-dev; sudo apt-get install -y libgmp-dev; sudo apt-get install -y libtool;
+```
+
+## Dependencies build and link
+
+```cd ~; wget http://download.oracle.com/berkeley-db/db-6.2.32.NC.tar.gz; tar zxf db-6.2.32.NC.tar.gz; cd db-6.2.32.NC/build_unix; ../dist/configure --enable-cxx --disable-shared; make; sudo make install; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb-6.2.so /usr/lib/libdb-6.2.so; sudo ln -s /usr/local/BerkeleyDB.6.2/lib/libdb_cxx-6.2.so /usr/lib/libdb_cxx-6.2.so; export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"
+```
+
+## GitHub pull (Source Download)
+
+```cd ~; git clone https://github.com/Konjungate-Core Konjungate
+```
+
+## Build Konjungate daemon
+
+```cd ~; cd ~/Konjungate/src; chmod a+x obj; chmod a+x leveldb/build_detect_platform; chmod a+x secp256k1; chmod a+x leveldb; chmod a+x ~/Konjungate/src; chmod a+x ~/Konjungate; make -f makefile.unix USE_UPNP=-; cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin/Konjungated;
+```
+
+## (Optional) Build Konjungate-QT (GUI wallet) on Linux
+
+All previous steps must be completed first.
+
+If you recompiling some other time you don't have to repeat previous steps, but need to define those variables. Skip this command if this is your first build and previous steps were performed in current terminal session.
+
+```export BDB_INCLUDE_PATH="/usr/local/BerkeleyDB.6.2/include"; export BDB_LIB_PATH="/usr/local/BerkeleyDB.6.2/lib"
+```
+
+## With UPNP:
+
+```cd ~; cd ~/Konjungate; qmake -qt=qt5; make
+```
+
+## Recommended Without UPNP:
+
+```cd ~; cd ~/Konjungate; qmake -qt=qt5 USE_UPNP=-; make
+```
+
+## Create config file for daemon
+
+```cd ~; sudo ufw allow 19417/tcp; sudo ufw allow 18495/tcp; sudo ufw allow 22/tcp; sudo mkdir ~/.KONJ; cat << "CONFIG" >> ~/.KONJ/Konjungate.conf
+listen=1
+server=1
+daemon=1
+testnet=0
+rpcuser=KONJrpcuser
+rpcpassword=SomeCrazyVeryVerySecurePasswordHere
+rpcport=18495
+port=19417
+rpcconnect=127.0.0.1
+rpcallowip=127.0.0.1
+addnode=37.187.180.53
+addnode=139.99.239.62
+addnode=192.99.212.20
+CONFIG
+chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ
+```
+
+## Run Konjungate daemon
+
+```cd ~; Konjungated; Konjungated getinfo
+```
+
+## Troubleshooting
+for basic troubleshooting run the following commands when compiling:
+this is for minupnpc errors compiling
+
+```make clean -f makefile.unix USE_UPNP=-
+make -f makefile.unix USE_UPNP=-
+```
+
+## Updating daemon in bin directory
+
+```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin
+```
 
 
 ## License
