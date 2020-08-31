@@ -151,7 +151,6 @@ If you recompiling some other time you don't have to repeat previous steps, but 
 
 
 ## Create config file for daemon
-
 ```cd ~; sudo ufw allow 19417/tcp; sudo ufw allow 18495/tcp; sudo ufw allow 22/tcp; sudo mkdir ~/.KONJ; cat << "CONFIG" >> ~/.KONJ/Konjungate.conf
 listen=1
 server=1
@@ -167,8 +166,8 @@ addnode=37.187.180.53
 addnode=139.99.239.62
 addnode=192.99.212.20
 CONFIG
-chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ```
-
+chmod 700 ~/.KONJ/Konjungate.conf; chmod 700 ~/.KONJ; ls -la ~/.KONJ
+```
 
 ## Run Konjungate daemon
 
@@ -180,11 +179,13 @@ for basic troubleshooting run the following commands when compiling:
 this is for minupnpc errors compiling
 
 ```make clean -f makefile.unix USE_UPNP=-
-make -f makefile.unix USE_UPNP=-```
+make -f makefile.unix USE_UPNP=-
+```
 
 ## Updating daemon in bin directory
 
-```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin```
+```cd ~; cp -r ~/Konjungate/src/Konjungated /usr/local/bin
+```
 
 
 ## License
